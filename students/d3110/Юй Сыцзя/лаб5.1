@@ -1,0 +1,20 @@
+url = 'https://www.kinopoisk.ru/film/435/'
+
+import requests
+from bs4 import BeautifulSoup
+
+url = 'https://www.ivi.tv/watch/90283'
+response = requests.get(url)
+html = response.content.decode('utf-8')
+soup = BeautifulSoup(html, 'html.parser', from_encoding='utf-8')
+
+
+movie_title = soup.find('h1').text
+print(movie_title)
+
+movie_summary2 = soup.find('p').text
+print(movie_summary2)
+
+with open('thegreenmile2.txt', 'w',encoding='utf-8') as f:
+    f.write('电影名称：'+movie_title+'\n')
+    f.write('电影简介：'+movie_summary2)
